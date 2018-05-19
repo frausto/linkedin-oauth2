@@ -11,6 +11,11 @@ module LinkedIn
       @connection = LinkedIn::Connection.new params: default_params,
                                              headers: default_headers
 
+      @connectionV2 = LinkedIn::Connection.new params: default_params,
+                                             headers: default_headers,
+                                             url: LinkedIn.config.api + "/v2"
+
+
       initialize_endpoints
     end
 
@@ -35,6 +40,10 @@ module LinkedIn
                              :group_suggestions,
                              :group_memberships,
                              :post_group_discussion
+
+    def_delegators :@organizations, :organization,
+                                :org_search,
+                                :org_by_email
 
     def_delegators :@companies, :company,
                                 :company_search,
@@ -69,6 +78,7 @@ module LinkedIn
       @groups = LinkedIn::Groups.new(@connection)
       @companies = LinkedIn::Companies.new(@connection)
       @communications = LinkedIn::Communications.new(@connection)
+      @organizations = LinkedIn::Organization.new(@connectionV2)
       @share_and_social_stream = LinkedIn::ShareAndSocialStream.new(@connection)
     end
 
