@@ -23,6 +23,10 @@ module LinkedIn
 
     private ##############################################################
 
+    def default_url_v2
+      LinkedIn.config.api + "/v2"
+    end
+
 
     def default_url
       LinkedIn.config.api + LinkedIn.config.api_version

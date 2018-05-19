@@ -22,6 +22,7 @@ module LinkedIn
                   :client_id,
                   :token_url,
                   :api_version,
+                  :noisy,
                   :redirect_uri,
                   :authorize_url,
                   :client_secret,
@@ -33,6 +34,7 @@ module LinkedIn
     def initialize
       @api = "https://api.linkedin.com"
       @api_version = "/v1"
+      @noisy = false
       @site = "https://www.linkedin.com"
       @token_url = "/uas/oauth2/accessToken"
       @authorize_url = "/uas/oauth2/authorization"
