@@ -43,7 +43,7 @@ module LinkedIn
 
     def get(path, options={})
       url, params, headers = prepare_connection_params(path, options)
-      puts "getting #{[url, params, headers]}" if LinkedIn.config.noisy
+      Rails.logger.info("getting #{[url, params, headers]}") if LinkedIn.config.noisy
       response = @connection.get(url, params, headers)
       
       return Mash.from_json(response.body)
